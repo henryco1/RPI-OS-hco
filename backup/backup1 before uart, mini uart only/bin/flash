@@ -1,0 +1,25 @@
+#!/bin/bash
+# This script flashes the raspbian image onto the SD card
+
+IMG_PATH = "media/justin/33AAE3CD5EB7553A/Projects/04-08-2019-image/2019-04-08-raspbian-stretch.img"
+set -e
+
+echo "Showing all mounted devices.."
+df -h
+
+
+echo "NOTE: If your SD card shows up more than once in the output of df due to having 
+multiple partitions on the SD card, you should unmount all of these partitions.\n"
+echo "Input the name of the device you want to flash (exclude /dev/:"
+read DEV_PATH
+
+echo "You have selected the following device: "$DEV_PATH""
+
+umount "$DEV_PATH"
+dd bs=4M status=progress if=/$IMG_PATH | pv |  of=/dev/$DEV_PATH 
+sync
+echo "Flash completed on "$DEV_PATH""
+
+
+
+

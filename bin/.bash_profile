@@ -1,0 +1,1 @@
+export PATH $PATH://media/justin/33AAE3CD5EB7553A/Projects/RPI-OS-hco-master/bin/
